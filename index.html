@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0B1526">
+<title>VBCS 1 · Saison 2026-2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout : en-tête d'équipe + bandeau de bilan + carte « prochain match », puis la saison mois par mois en lignes de match. */
+:root{
+  --bg:#0B1526; --surface:#12203A; --surface-2:#182A4A; --line:#22375C;
+  --fg:#E7EEF8; --muted:#8FA3C2; --ice:#7FD4F5; --amber:#F5B547;
+  --win:#4FD18B; --win-bg:rgba(79,209,139,.13); --loss:#F2727A; --loss-bg:rgba(242,114,122,.13);
+  --amber-bg:rgba(245,181,71,.14); --ice-bg:rgba(127,212,245,.12);
+  --f-display:"Nunito",ui-rounded,system-ui,sans-serif;
+  --f-body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){
+  --bg:#EEF3F9; --surface:#FFFFFF; --surface-2:#F4F7FB; --line:#D5DFEC;
+  --fg:#0E1A2E; --muted:#56688A; --ice:#0A7FB3; --amber:#A8670A;
+  --win:#16804B; --win-bg:rgba(22,128,75,.10); --loss:#C2333E; --loss-bg:rgba(194,51,62,.09);
+  --amber-bg:rgba(168,103,10,.10); --ice-bg:rgba(10,127,179,.09); color-scheme:light}}
+:root[data-theme="light"]{
+  --bg:#EEF3F9; --surface:#FFFFFF; --surface-2:#F4F7FB; --line:#D5DFEC;
+  --fg:#0E1A2E; --muted:#56688A; --ice:#0A7FB3; --amber:#A8670A;
+  --win:#16804B; --win-bg:rgba(22,128,75,.10); --loss:#C2333E; --loss-bg:rgba(194,51,62,.09);
+  --amber-bg:rgba(168,103,10,.10); --ice-bg:rgba(10,127,179,.09); color-scheme:light}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:15px/1.5 var(--f-body);-webkit-font-smoothing:antialiased}
+.wrap{max-width:880px;margin:0 auto;padding-inline:16px;padding-block:28px 56px;display:grid;gap:28px}
+h1,h2,h3{font-family:var(--f-display);margin:0;text-wrap:balance}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.eyebrow{font:600 12px/1 var(--f-body);letter-spacing:.12em;text-transform:uppercase;color:var(--ice)}
+a{color:var(--ice)}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--ice);outline-offset:2px}
+
+/* En-tête */
+header{display:grid;gap:10px}
+header h1{font-size:clamp(34px,7vw,52px);font-weight:900;line-height:1;letter-spacing:-.01em}
+header h1 span{color:var(--amber)}
+.sub{color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 14px;font-size:14px}
+.sub b{color:var(--fg);font-weight:600}
+.status{font-size:13px;color:var(--muted)}
+
+/* Bilan */
+.stats{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));border:1px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden}
+.stat{padding:14px 12px;display:grid;gap:4px;border-left:1px solid var(--line)}
+.stat:first-child{border-left:0}
+.stat .k{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.stat .v{font:700 24px/1.1 var(--f-mono);font-variant-numeric:tabular-nums}
+.stat .v.pts{color:var(--amber)}
+@media (max-width:620px){.stats{grid-template-columns:repeat(3,minmax(0,1fr))}.stat:nth-child(4){border-left:0}.stat:nth-child(n+4){border-top:1px solid var(--line)}}
+
+/* Prochain match */
+.next{background:var(--surface-2);border:1px solid var(--line);border-radius:18px;padding:20px;display:grid;gap:14px}
+.next-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.next h2{font-size:clamp(24px,5vw,32px);font-weight:900;line-height:1.1}
+.next h2 .vs{color:var(--muted);font-weight:700;margin-inline:.35em}
+.next h2 .us{color:var(--amber)}
+.next-meta{display:flex;flex-wrap:wrap;gap:8px 18px;color:var(--muted);font-size:14px}
+.next-meta b{color:var(--fg);font-weight:600}
+.countdown{font:700 13px/1 var(--f-mono);color:var(--ice);background:var(--ice-bg);padding:7px 10px;border-radius:999px;white-space:nowrap}
+.btn-link{display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:14px;text-decoration:none;color:var(--ice);border:1px solid var(--line);padding:8px 12px;border-radius:10px;background:var(--surface)}
+.btn-link:hover{border-color:var(--ice)}
+.links{display:flex;flex-wrap:wrap;gap:10px}
+
+/* Saison */
+.season{display:grid;gap:22px}
+.month{display:grid;gap:8px}
+.month h3{font-size:15px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;padding-inline:4px}
+.list{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.row{display:grid;grid-template-columns:62px 92px minmax(0,1fr) auto;gap:14px;align-items:center;padding:14px 16px;border-top:1px solid var(--line)}
+.row:first-child{border-top:0}
+.row.is-next{background:var(--amber-bg)}
+.num{font:700 12px/1 var(--f-mono);color:var(--muted);display:grid;gap:4px}
+.num b{font-size:20px;color:var(--fg)}
+.date{display:grid;gap:2px}
+.date .d{font-weight:600}
+.date .t{font:500 12px/1.2 var(--f-mono);color:var(--muted)}
+.match{min-width:0;display:grid;gap:3px}
+.opp{font-family:var(--f-display);font-weight:800;font-size:17px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.tag{font:700 10px/1 var(--f-body);letter-spacing:.1em;text-transform:uppercase;padding:4px 7px;border-radius:6px}
+.tag.home{color:var(--amber);background:var(--amber-bg)}
+.tag.away{color:var(--ice);background:var(--ice-bg)}
+.venue{font-size:13px;color:var(--muted);overflow-wrap:anywhere}
+.venue a{text-decoration:none;font-weight:600;margin-left:6px}
+.sets{font:500 12px/1.3 var(--f-mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.comment{font-size:13px;color:var(--fg);opacity:.85;font-style:italic;overflow-wrap:anywhere}
+.res{display:grid;justify-items:end;gap:6px}
+.chip{font:700 13px/1 var(--f-mono);padding:8px 10px;border-radius:9px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.chip.win{color:var(--win);background:var(--win-bg)}
+.chip.loss{color:var(--loss);background:var(--loss-bg)}
+.chip.todo{color:var(--muted);background:var(--surface-2);font-family:var(--f-body);font-weight:600}
+.chip.late{color:var(--amber);background:var(--amber-bg);font-family:var(--f-body);font-weight:600}
+.chip.rep{color:var(--ice);background:var(--ice-bg);font-family:var(--f-body);font-weight:600}
+.note{font:700 12px/1 var(--f-mono);color:var(--amber);display:flex;align-items:center;gap:6px}
+.bar{width:54px;height:5px;border-radius:3px;background:var(--surface-2);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--amber)}
+.edit{font-size:12px;font-weight:600;color:var(--ice);background:none;border:1px solid var(--line);border-radius:8px;padding:5px 9px}
+.edit:hover{border-color:var(--ice)}
+.row.bye{opacity:.6}
+.row.bye .opp{font-weight:700;color:var(--muted)}
+@media (max-width:620px){
+  .row{grid-template-columns:44px minmax(0,1fr) auto;grid-template-areas:"num date res" "num match match";gap:8px 12px}
+  .num{grid-area:num;align-self:start}.date{grid-area:date}.match{grid-area:match}.res{grid-area:res;align-self:start}
+}
+
+footer{display:grid;gap:10px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:18px}
+footer b{color:var(--fg);font-weight:600}
+
+/* Base */
+body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+.cal{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.cal .lbl{font-size:13px;color:var(--muted);width:100%}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">FSGT 69 · Championnat 6x6 · Saison 2026-2027</div>
+    <h1>VBCS <span>1</span></h1>
+    <div class="sub"><span>Poule <b>M04 · Honneur</b></span><span>Domicile : <b>La Dauphinoise</b>, lundi 20h–22h</span></div>
+    <div class="cal"><span class="lbl">Ajouter toute la saison à ton agenda :</span>
+      <a class="btn-link" href="webcal://pragaz-dev.github.io/vbcs/vbcs1-2026-2027.ics">iPhone · Apple Agenda</a>
+      <a class="btn-link" href="https://calendar.google.com/calendar/render?cid=webcal%3A%2F%2Fpragaz-dev.github.io%2Fvbcs%2Fvbcs1-2026-2027.ics" target="_blank" rel="noopener">Android · Google Agenda</a>
+    </div>
+    <div class="status" id="status">Chargement des résultats…</div>
+  </header>
+
+  <section class="stats" id="stats" aria-label="Bilan de la saison"></section>
+  <section class="next" id="next" aria-label="Prochain match"></section>
+  <section class="season" id="season" aria-label="Calendrier et résultats"></section>
+
+  <footer>
+    <div><b>Barème 2026-2027</b> : victoire 2 pts · défaite 1 pt · forfait 0 pt. Le n° de match est le n° de journée et ne change jamais, même en cas de report ou d'inversion.</div>
+    <div><b>Semaines de rattrapage</b> : 9–15 nov · 7–13 déc · 18–24 janv · 1–7 mars · 29 mars–4 avr · 3–9 mai · 17–23 mai · 31 mai–6 juin · 7–13 juin.</div>
+  </footer>
+</div>
+<script type="application/json" id="vbcs-data">
+{"results":{},"maj":null}
+</script>
+<script>
+const DATA=(()=>{try{return JSON.parse(document.getElementById("vbcs-data").textContent)}catch(e){return{results:{}}}})();
+const TEAMS={
+  smcv:{name:"SMCV 3",gym:"Gymnase St-Martin",addr:"Avenue de St Maurice",city:"Miribel",hours:"20h00"},
+  strambert:{name:"St-Rambert 2",gym:"La Sauvagère",addr:"7 Square E. Mouriquand",city:"Lyon",hours:"20h30"},
+  ternay:{name:"Ternay 2",gym:"Gymnase du Devès",addr:"Rue des sports",city:"Ternay",hours:"20h00"},
+  sme:{name:"SME 1",gym:"Omnisports",addr:"Rue Victor Renelle",city:"Saint-Maurice-l'Exil",hours:"20h15"},
+  gsl:{name:"GSL 2",gym:"Gymnase A. David Neel",addr:"100 rue Francis de Pressensé",city:"Villeurbanne",hours:"20h00"},
+  chassieu:{name:"Chassieu 1",gym:"CS temporaire",addr:"48 rue Oreste Zenezini",city:"Chassieu",hours:"20h00"},
+  asvf:{name:"ASVF 2",gym:"Gymnase Jacques Anquetil",addr:"90 avenue des Pins",city:"Villefontaine",hours:"20h00"},
+  corvi:{name:"CORVI 2",gym:"Gymnase Jean Guimier",addr:"2 avenue Jules Guesde",city:"Vénissieux",hours:"18h00"}
+};
+const HOME={gym:"La Dauphinoise",addr:"Route de Pont de Chéruy",city:"Colombier-Saugnieu",hours:"20h00"};
+const FIX=[
+  {j:1,date:"2026-10-12",opp:"smcv",home:false},
+  {j:2,date:"2026-11-02",opp:"ternay",home:true},
+  {j:4,date:"2026-11-19",opp:"gsl",home:false},
+  {j:5,date:"2026-11-23",opp:"chassieu",home:true},
+  {j:6,date:"2026-11-30",opp:"strambert",home:false},
+  {j:8,date:"2026-12-14",opp:"sme",home:true},
+  {j:9,date:"2027-01-04",opp:"corvi",home:false},
+  {j:10,date:"2027-01-11",opp:"asvf",home:true},
+  {j:12,date:"2027-01-25",bye:true},
+  {j:13,date:"2027-02-04",opp:"ternay",home:false},
+  {j:14,date:"2027-02-08",opp:"gsl",home:true},
+  {j:16,date:"2027-03-09",opp:"chassieu",home:false},
+  {j:17,date:"2027-03-15",opp:"strambert",home:true},
+  {j:18,date:"2027-03-25",opp:"sme",home:false},
+  {j:20,date:"2027-04-05",opp:"corvi",home:true},
+  {j:21,date:"2027-04-29",opp:"asvf",home:false},
+  {j:23,date:"2027-05-10",bye:true},
+  {j:25,date:"2027-05-24",opp:"smcv",home:true}
+];
+const S={results:DATA.results||{},canEdit:false};
+const $=id=>document.getElementById(id);
+const docId=j=>"j"+String(j).padStart(2,"0");
+const d=s=>new Date(s+"T12:00:00");
+const fmt=(s,o)=>d(s).toLocaleDateString("fr-FR",o);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const today=()=>{const t=new Date();t.setHours(0,0,0,0);return t};
+const venueOf=f=>f.home?HOME:TEAMS[f.opp];
+const waze=v=>"https://waze.com/ul?q="+encodeURIComponent(v.addr+", "+v.city)+"&navigate=yes";
+function gcal(f){
+  const r=S.results[docId(f.j)];const date=(r&&r.statut==="reporte"&&r.dateReport)||f.date;
+  const v=venueOf(f);const [h,m]=v.hours.split("h").map(Number);
+  const st=new Date(date+"T00:00:00");st.setHours(h,m);const en=new Date(st.getTime()+150*6e4);
+  const p=x=>String(x).padStart(2,"0");const fd=t=>`${t.getFullYear()}${p(t.getMonth()+1)}${p(t.getDate())}T${p(t.getHours())}${p(t.getMinutes())}00`;
+  const t=TEAMS[f.opp].name;
+  return "https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(f.home?`VBCS 1 – ${t} (dom.)`:`${t} – VBCS 1 (ext.)`)
+    +"&dates="+fd(st)+"/"+fd(en)+"&ctz=Europe/Paris&location="+encodeURIComponent(`${v.gym}, ${v.addr}, ${v.city}`)
+    +"&details="+encodeURIComponent(`Championnat FSGT 69 · Poule M04 Honneur · N° de match ${f.j}`);
+}
+const gmaps=v=>"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(v.gym+", "+v.addr+", "+v.city);
+
+function outcome(r){
+  if(!r)return null;
+  if(r.statut==="forfait_pour")return{w:true,sw:3,sl:0,pts:2};
+  if(r.statut==="forfait_contre")return{w:false,sw:0,sl:3,pts:0};
+  if(r.statut!=="joue"||!Array.isArray(r.sets))return null;
+  let sw=0,sl=0;for(const [a,b] of r.sets){if(a>b)sw++;else if(b>a)sl++}
+  if(sw!==3&&sl!==3)return null;
+  return{w:sw===3,sw,sl,pts:sw===3?2:1};
+}
+function stats(){
+  let pj=0,v=0,dd=0,pts=0,sw=0,sl=0,nSum=0,nCnt=0;
+  for(const f of FIX){if(f.bye)continue;const r=S.results[docId(f.j)];const o=outcome(r);
+    if(o){pj++;o.w?v++:dd++;pts+=o.pts;sw+=o.sw;sl+=o.sl}
+    if(r&&typeof r.note==="number"){nSum+=r.note;nCnt++}}
+  const diff=sw-sl;
+  return [["Joués",pj],["Victoires",v],["Défaites",dd],["Points",pts,"pts"],["Sets",(diff>0?"+":"")+diff],["Note moy.",nCnt?(nSum/nCnt).toFixed(1):"–"]];
+}
+function nextMatch(){
+  const t=today();
+  return FIX.find(f=>{if(f.bye)return false;const r=S.results[docId(f.j)];
+    if(outcome(r))return false;
+    const when=r&&r.statut==="reporte"&&r.dateReport?r.dateReport:f.date;
+    return d(when)>=t;});
+}
+function renderStats(){
+  $("stats").innerHTML=stats().map(([k,v,c])=>`<div class="stat"><span class="k">${k}</span><span class="v ${c||""}">${v}</span></div>`).join("");
+}
+function renderNext(){
+  const f=nextMatch();const el=$("next");
+  if(!f){el.innerHTML=`<div class="eyebrow">Saison terminée</div><h2>Tous les matchs sont joués.</h2>`;return}
+  const r=S.results[docId(f.j)];const when=r&&r.statut==="reporte"&&r.dateReport?r.dateReport:f.date;
+  const v=venueOf(f);const t=TEAMS[f.opp].name;
+  const days=Math.round((d(when)-today())/864e5);
+  const cd=days===0?"Ce soir":days===1?"Demain":`J-${days}`;
+  el.innerHTML=`<div class="next-top"><div class="eyebrow">Prochain match · N° ${f.j}${r&&r.statut==="reporte"?" · reporté":""}</div><span class="countdown">${cd}</span></div>
+  <h2>${f.home?`<span class="us">VBCS 1</span><span class="vs">reçoit</span>${esc(t)}`:`${esc(t)}<span class="vs">reçoit</span><span class="us">VBCS 1</span>`}</h2>
+  <div class="next-meta"><span><b>${fmt(when,{weekday:"long",day:"numeric",month:"long"})}</b> à ${v.hours}</span><span>${esc(v.gym)}, ${esc(v.addr)}, ${esc(v.city)}</span></div>
+  <div class="links"><a class="btn-link" href="${waze(v)}" target="_blank" rel="noopener">Waze ↗</a><a class="btn-link" href="${gmaps(v)}" target="_blank" rel="noopener">Google Maps ↗</a><a class="btn-link" href="${gcal(f)}" target="_blank" rel="noopener">+ Google Agenda</a></div>`;
+}
+function resultCell(f,r){
+  const o=outcome(r);
+  if(o){const lbl=r.statut==="forfait_pour"?"V forfait":r.statut==="forfait_contre"?"D forfait":`${o.w?"V":"D"} ${o.sw}–${o.sl}`;
+    return `<span class="chip ${o.w?"win":"loss"}">${lbl}</span>`}
+  if(r&&r.statut==="reporte")return `<span class="chip rep">Reporté${r.dateReport?" · "+fmt(r.dateReport,{day:"numeric",month:"short"}):""}</span>`;
+  if(d(f.date)<today())return `<span class="chip late">À saisir</span>`;
+  return `<span class="chip todo">À jouer</span>`;
+}
+function renderSeason(){
+  const nx=nextMatch();const groups=[];
+  for(const f of FIX){const key=f.date.slice(0,7);let g=groups[groups.length-1];if(!g||g.key!==key){g={key,items:[]};groups.push(g)}g.items.push(f)}
+  $("season").innerHTML=groups.map(g=>`<div class="month"><h3>${fmt(g.key+"-15",{month:"long",year:"numeric"})}</h3><div class="list">${g.items.map(f=>{
+    if(f.bye)return `<div class="row bye"><div class="num">N°<b>${f.j}</b></div><div class="date"><span class="d">Semaine du ${fmt(f.date,{day:"numeric",month:"short"})}</span></div><div class="match"><span class="opp">Exempt</span><span class="venue">Pas de match cette semaine</span></div><div class="res"></div></div>`;
+    const r=S.results[docId(f.j)];const v=venueOf(f);
+    const setsTxt=r&&r.statut==="joue"&&Array.isArray(r.sets)?r.sets.map(([a,b])=>`${a}-${b}`).join(" · "):"";
+    const note=r&&typeof r.note==="number"?`<span class="note"><span class="bar"><i style="width:${r.note*10}%"></i></span>${r.note}/10</span>`:"";
+    return `<div class="row${nx&&nx.j===f.j?" is-next":""}">
+      <div class="num">N°<b>${f.j}</b></div>
+      <div class="date"><span class="d">${fmt(f.date,{weekday:"short",day:"numeric",month:"short"})}</span><span class="t">${v.hours}</span></div>
+      <div class="match"><span class="opp">${esc(TEAMS[f.opp].name)}<span class="tag ${f.home?"home":"away"}">${f.home?"Dom.":"Ext."}</span></span>
+        <span class="venue">${esc(v.gym)} · ${esc(v.city)}<a href="${waze(v)}" target="_blank" rel="noopener">Waze ↗</a><a href="${gmaps(v)}" target="_blank" rel="noopener">Maps ↗</a><a href="${gcal(f)}" target="_blank" rel="noopener">+ Agenda</a></span>
+        ${setsTxt?`<span class="sets">${setsTxt}</span>`:""}
+        ${r&&r.commentaire?`<span class="comment">« ${esc(r.commentaire)} »</span>`:""}</div>
+      <div class="res">${resultCell(f,r)}${note}${S.canEdit?`<button class="edit" data-j="${f.j}">${r?"Modifier":"Saisir"}</button>`:""}</div>
+    </div>`}).join("")}</div></div>`).join("");
+}
+function render(){renderStats();renderNext();renderSeason()}
+function setStatus(t){$("status").textContent=t}
+render();
+(()=>{
+  const n=Object.keys(S.results).length;
+  const maj=DATA.maj?" · mis à jour le "+new Date(DATA.maj).toLocaleDateString("fr-FR",{day:"numeric",month:"long"}):"";
+  setStatus(n?`${n} match${n>1?"s":""} renseigné${n>1?"s":""}${maj}`:"Aucun résultat pour l'instant");
+})();
+</script>
+</body>
+</html>
