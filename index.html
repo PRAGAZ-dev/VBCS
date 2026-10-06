@@ -118,6 +118,100 @@ footer b{color:var(--fg);font-weight:600}
 body{margin:0}img{max-width:100%}[hidden]{display:none!important}
 .cal{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
 .cal .lbl{font-size:13px;color:var(--muted);width:100%}
+/* ---- Nouveautés : règlement, dispos, mental ---- */
+.preview-banner{background:var(--amber-bg);color:var(--amber);border:1px dashed var(--amber);border-radius:12px;padding:10px 14px;font-size:13px;font-weight:600}
+.sec{display:grid;gap:12px}
+.sec-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.sec-head h2{font-size:22px;font-weight:900}
+.sec-head p{margin:0;color:var(--muted);font-size:13px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px}
+
+/* Règlement */
+.gauges{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:620px){.gauges{grid-template-columns:minmax(0,1fr)}}
+.gauge{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;display:grid;gap:8px}
+.gauge .k{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.gauge .v{font:700 26px/1 var(--f-mono);font-variant-numeric:tabular-nums}
+.gauge .v small{font-size:14px;color:var(--muted);font-weight:500}
+.cells{display:flex;gap:4px}
+.cells i{flex:1;height:8px;border-radius:3px;background:var(--surface-2);border:1px solid var(--line)}
+.cells i.on{background:var(--win);border-color:transparent}
+.cells i.warn{background:var(--amber);border-color:transparent}
+.cells i.bad{background:var(--loss);border-color:transparent}
+.gauge .st{font-size:13px;color:var(--muted)}
+.gauge .st b{color:var(--fg)}
+.gauge.warn .v{color:var(--amber)}
+.gauge.bad .v{color:var(--loss)}
+.rule-list{display:grid;gap:8px}
+.rule-row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:10px 0;border-top:1px solid var(--line);font-size:14px}
+.rule-row:first-child{border-top:0;padding-top:0}
+.pill{font:700 12px/1 var(--f-mono);padding:6px 9px;border-radius:999px;white-space:nowrap}
+.pill.ok{color:var(--win);background:var(--win-bg)}
+.pill.warn{color:var(--amber);background:var(--amber-bg)}
+.pill.bad{color:var(--loss);background:var(--loss-bg)}
+.muted{color:var(--muted)}
+
+/* Dispos */
+.dispo{display:grid;gap:12px;border-top:1px solid var(--line);padding-top:14px}
+.dispo-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.dispo-head h3{font-size:16px;font-weight:800}
+.counts{display:flex;gap:8px;flex-wrap:wrap}
+.groups{display:grid;gap:8px}
+.group{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;font-size:14px}
+.group .gk{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);min-width:96px}
+.names{display:flex;gap:6px;flex-wrap:wrap}
+.name{font-size:13px;padding:4px 9px;border-radius:999px;background:var(--surface);border:1px solid var(--line)}
+.alert{font-size:13px;font-weight:600;padding:9px 12px;border-radius:10px;color:var(--loss);background:var(--loss-bg)}
+.alert.amber{color:var(--amber);background:var(--amber-bg)}
+.btn-primary{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:14px;text-decoration:none;color:#14161A;background:var(--amber);padding:9px 14px;border-radius:10px;border:0}
+.btn-primary[aria-disabled="true"]{opacity:.5;pointer-events:none}
+.mini{font:700 11px/1 var(--f-mono);padding:5px 7px;border-radius:6px;background:var(--surface-2);color:var(--muted);white-space:nowrap}
+.mini.ok{color:var(--win);background:var(--win-bg)}
+.mini.warn{color:var(--amber);background:var(--amber-bg)}
+.flags{display:flex;gap:6px;flex-wrap:wrap}
+.flag{font:600 11px/1 var(--f-body);padding:4px 7px;border-radius:6px;color:var(--amber);background:var(--amber-bg)}
+
+/* Mental */
+.mental{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:12px}
+@media (max-width:720px){.mental{grid-template-columns:minmax(0,1fr)}}
+.focus{background:var(--surface-2);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:10px;align-content:start}
+.focus .word{font-family:var(--f-display);font-weight:900;font-size:clamp(30px,7vw,44px);line-height:1;color:var(--amber);letter-spacing:.01em}
+.focus .obj{font-size:15px}
+.focus .obj b{color:var(--ice)}
+.rules{display:grid;gap:6px;margin:0;padding:0;list-style:none}
+.rules li{font-size:14px;display:flex;gap:8px}
+.rules li::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:var(--ice);margin-top:8px}
+.routine{display:grid;gap:0}
+.step{display:grid;grid-template-columns:110px minmax(0,1fr);gap:12px;padding:11px 0;border-top:1px solid var(--line)}
+.step:first-child{border-top:0;padding-top:0}
+.step .when{font:700 11px/1.3 var(--f-mono);color:var(--ice);text-transform:uppercase;letter-spacing:.06em}
+.step .what{font-size:14px}
+.step .what b{display:block;margin-bottom:2px}
+.spark{display:flex;align-items:flex-end;gap:6px;height:90px;padding-top:6px}
+.spark .b{flex:1;display:grid;justify-items:center;gap:4px;align-self:stretch;align-content:end}
+.spark .b i{display:block;width:100%;max-width:26px;border-radius:5px 5px 2px 2px;background:var(--amber)}
+.spark .b span{font:700 10px/1 var(--f-mono);color:var(--muted)}
+.spark .b em{font:700 11px/1 var(--f-mono);color:var(--fg);font-style:normal}
+.overlay{position:fixed;inset:0;background:rgba(5,10,20,.62);display:grid;place-items:center;padding:16px;z-index:10}
+.dialog{background:var(--surface);border:1px solid var(--line);border-radius:18px;width:min(480px,100%);max-height:calc(100% - 32px);overflow:auto;padding:22px;display:grid;gap:16px}
+.dialog h2{font-size:24px;font-weight:900}
+.field{display:grid;gap:8px}
+.field>label,.field>.lbl{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.dialog select,.dialog input:not([type=radio]){font:inherit;font-size:16px;color:var(--fg);background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;width:100%}
+.err{color:var(--loss);font-size:13px;font-weight:600}
+.actions{display:flex;justify-content:flex-end}
+.actions .right{display:flex;gap:10px}
+.primary{background:var(--amber);color:#14161A;border:0;border-radius:10px;padding:11px 18px;font-weight:700;cursor:pointer}
+.ghost{background:none;color:var(--fg);border:1px solid var(--line);border-radius:10px;padding:11px 16px;font-weight:600;cursor:pointer}
+.choices{display:flex;gap:8px;flex-wrap:wrap}
+.choices label{position:relative}
+.choices input{position:absolute;opacity:0;pointer-events:none}
+.choices span{display:inline-block;padding:9px 14px;border-radius:10px;border:1px solid var(--line);background:var(--surface-2);font-weight:600;font-size:14px;cursor:pointer}
+.choices input:checked+span{background:var(--ice);color:#0B1526;border-color:var(--ice)}
+.choices input:focus-visible+span{outline:2px solid var(--ice);outline-offset:2px}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));background:var(--win);color:#0B1526;font-weight:700;padding:11px 18px;border-radius:12px;z-index:20;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.edit{font-size:12px;font-weight:600;color:var(--ice);background:none;border:1px solid var(--line);border-radius:8px;padding:5px 9px;cursor:pointer}
+button.btn-primary{cursor:pointer}
 </style>
 </head>
 <body>
@@ -130,23 +224,95 @@ body{margin:0}img{max-width:100%}[hidden]{display:none!important}
       <a class="btn-link" href="webcal://pragaz-dev.github.io/VBCS/vbcs1-2026-2027.ics">iPhone · Apple Agenda</a>
       <a class="btn-link" href="https://calendar.google.com/calendar/render?cid=webcal%3A%2F%2Fpragaz-dev.github.io%2FVBCS%2Fvbcs1-2026-2027.ics" target="_blank" rel="noopener">Android · Google Agenda</a>
     </div>
-    <div class="status" id="status">Chargement des résultats…</div>
+    <div class="status" id="status"></div>
   </header>
+
+  <div class="preview-banner" id="preview-banner" hidden>Aperçu joueur : on simule le 20 novembre 2026 avec des données d'exemple. Clique sur « Je réponds » ou « Répondre » et réponds comme un joueur : la page se met à jour. Sur le vrai site, le bouton ouvrira le formulaire Google.</div>
 
   <section class="stats" id="stats" aria-label="Bilan de la saison"></section>
   <section class="next" id="next" aria-label="Prochain match"></section>
+
+  <section class="sec" aria-labelledby="h-reg">
+    <div class="sec-head"><h2 id="h-reg">Zéro pénalité</h2><p>Compteurs du règlement FSGT 69 pour VBCS 1</p></div>
+    <div class="gauges" id="gauges"></div>
+    <div class="panel rule-list" id="rules-extra"></div>
+  </section>
+
   <section class="season" id="season" aria-label="Calendrier et résultats"></section>
 
   <footer>
     <div><b>Barème 2026-2027</b> : victoire 2 pts · défaite 1 pt · forfait 0 pt. Le n° de match est le n° de journée et ne change jamais, même en cas de report ou d'inversion.</div>
     <div><b>Semaines de rattrapage</b> : 9–15 nov · 7–13 déc · 18–24 janv · 1–7 mars · 29 mars–4 avr · 3–9 mai · 17–23 mai · 31 mai–6 juin · 7–13 juin.</div>
+    <div><b>Feuille de match</b> : l'équipe gagnante l'envoie par mail sous 10 jours à fsgt69006@gmail.com, au référent de poule et à l'adversaire. Objet : VOLLEY / VBCS / M04 / VBCS 1 / FDM.</div>
   </footer>
 </div>
+<div class="overlay" id="overlay" hidden>
+  <form class="dialog" id="form" novalidate>
+    <div><div class="eyebrow">Disponibilité · simulation du formulaire</div><h2 style="margin-top:6px">Je réponds</h2></div>
+    <div class="field"><label for="f-name">Ton prénom</label><input id="f-name" autocomplete="given-name" maxlength="30" placeholder="Ex. Nicolas"></div>
+    <div class="field"><label for="f-match">Match</label><select id="f-match"></select></div>
+    <div class="field"><span class="lbl">Tu viens ?</span>
+      <div class="choices" id="f-dispo">
+        <label><input type="radio" name="dispo" id="d-oui" value="Oui"><span>Oui</span></label>
+        <label><input type="radio" name="dispo" id="d-peut" value="Peut-être"><span>Peut-être</span></label>
+        <label><input type="radio" name="dispo" id="d-non" value="Non"><span>Non</span></label>
+      </div></div>
+    <div class="field" id="f-covoit-wrap"><span class="lbl">Covoiturage (match à l'extérieur)</span>
+      <div class="choices">
+        <label><input type="radio" name="covoit" id="c-drive" value="Je peux conduire"><span>Je peux conduire</span></label>
+        <label><input type="radio" name="covoit" id="c-seek" value="Je cherche une place"><span>Je cherche une place</span></label>
+        <label><input type="radio" name="covoit" id="c-none" value="Pas besoin"><span>Pas besoin</span></label>
+      </div></div>
+    <div class="field" id="f-places-wrap" hidden><label for="f-places">Places libres dans ta voiture</label><input id="f-places" type="number" min="1" max="8" value="3" inputmode="numeric"></div>
+    <div class="err" id="f-err" hidden></div>
+    <div class="actions"><div class="right"><button type="button" class="ghost" id="f-cancel">Annuler</button><button type="submit" class="primary">Envoyer</button></div></div>
+  </form>
+</div>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<!-- Données de la saison : c'est ce bloc que Claude met à jour après chaque match -->
 <script type="application/json" id="vbcs-data">
-{"results":{},"maj":null}
+{
+  "maj": null,
+  "results": {}
+}
 </script>
 <script>
-const DATA=(()=>{try{return JSON.parse(document.getElementById("vbcs-data").textContent)}catch(e){return{results:{}}}})();
+/* ===== Réglages ===== */
+const PREVIEW = false;            // false sur le site réel
+const CONFIG = {
+  formUrl: "",                   // lien du formulaire Google (pré-rempli), ex. https://docs.google.com/forms/d/e/XXX/viewform?usp=pp_url&entry.123=
+  csvUrl: ""                     // lien CSV publié de la feuille des réponses
+};
+
+/* ===== Données d'exemple pour l'aperçu ===== */
+const DEMO = {
+  today: "2026-11-20",
+  data: {
+    maj: "2026-11-20T09:00:00Z",
+    results: {
+      j01: {statut:"joue", sets:[[25,21],[22,25],[25,19],[25,23]], note:7, commentaire:"Bonne réception, service à travailler", fdm:"envoyee"},
+      j02: {statut:"joue", sets:[[23,25],[25,20],[18,25],[25,22],[12,15]], note:6, commentaire:"Démarré à 5, belle réaction au 4e set", a5:true},
+      j04: {statut:"joue", sets:[[25,17],[25,22],[25,20]], note:8, commentaire:"Match maîtrisé, MVP Julien", retard:true, renforts:["Thomas"]}
+    },
+    focus: { j05: {motcle:"SERVICE", objectif:"80 % de services dans le terrain, routine en 4 temps sur chaque service"} },
+    focusSaison: {motcle:"ENSEMBLE", objectif:"Parler sur chaque ballon et rester à 1 point après chaque erreur"}
+  },
+  rows: [
+    ["","Julien","N° 5","Oui","Je peux conduire","3"],
+    ["","Thomas","N° 5","Oui","Je cherche une place",""],
+    ["","Karim","N° 5","Oui","Pas besoin",""],
+    ["","Maxime","N° 5","Peut-être","Pas besoin",""],
+    ["","Sébastien","N° 5","Oui","Je cherche une place",""],
+    ["","Hugo","N° 5","Non","",""],
+    ["","Alex","N° 5","Oui","Je peux conduire","2"],
+    ["","Romain","N° 6","Oui","Je peux conduire","3"],
+    ["","Julien","N° 6","Oui","Je cherche une place",""],
+    ["","Karim","N° 6","Peut-être","",""]
+  ]
+};
+
+/* ===== Calendrier ===== */
 const TEAMS={
   smcv:{name:"SMCV 3",gym:"Gymnase St-Martin",addr:"Avenue de St Maurice",city:"Miribel",hours:"20h00"},
   strambert:{name:"St-Rambert 2",gym:"La Sauvagère",addr:"7 Square E. Mouriquand",city:"Lyon",hours:"20h30"},
@@ -159,46 +325,44 @@ const TEAMS={
 };
 const HOME={gym:"La Dauphinoise",addr:"Route de Pont de Chéruy",city:"Colombier-Saugnieu",hours:"20h00"};
 const FIX=[
-  {j:1,date:"2026-10-12",opp:"smcv",home:false},
-  {j:2,date:"2026-11-02",opp:"ternay",home:true},
-  {j:4,date:"2026-11-19",opp:"gsl",home:false},
-  {j:5,date:"2026-11-23",opp:"chassieu",home:true},
-  {j:6,date:"2026-11-30",opp:"strambert",home:false},
-  {j:8,date:"2026-12-14",opp:"sme",home:true},
-  {j:9,date:"2027-01-04",opp:"corvi",home:false},
-  {j:10,date:"2027-01-11",opp:"asvf",home:true},
+  {j:1,date:"2026-10-12",opp:"smcv",home:false},{j:2,date:"2026-11-02",opp:"ternay",home:true},
+  {j:4,date:"2026-11-19",opp:"gsl",home:false},{j:5,date:"2026-11-23",opp:"chassieu",home:true},
+  {j:6,date:"2026-11-30",opp:"strambert",home:false},{j:8,date:"2026-12-14",opp:"sme",home:true},
+  {j:9,date:"2027-01-04",opp:"corvi",home:false},{j:10,date:"2027-01-11",opp:"asvf",home:true},
   {j:12,date:"2027-01-25",bye:true},
-  {j:13,date:"2027-02-04",opp:"ternay",home:false},
-  {j:14,date:"2027-02-08",opp:"gsl",home:true},
-  {j:16,date:"2027-03-09",opp:"chassieu",home:false},
-  {j:17,date:"2027-03-15",opp:"strambert",home:true},
-  {j:18,date:"2027-03-25",opp:"sme",home:false},
-  {j:20,date:"2027-04-05",opp:"corvi",home:true},
+  {j:13,date:"2027-02-04",opp:"ternay",home:false},{j:14,date:"2027-02-08",opp:"gsl",home:true},
+  {j:16,date:"2027-03-09",opp:"chassieu",home:false},{j:17,date:"2027-03-15",opp:"strambert",home:true},
+  {j:18,date:"2027-03-25",opp:"sme",home:false},{j:20,date:"2027-04-05",opp:"corvi",home:true},
   {j:21,date:"2027-04-29",opp:"asvf",home:false},
   {j:23,date:"2027-05-10",bye:true},
   {j:25,date:"2027-05-24",opp:"smcv",home:true}
 ];
-const S={results:DATA.results||{},canEdit:false};
+
+/* ===== Outils ===== */
+const RAW=(()=>{try{return JSON.parse(document.getElementById("vbcs-data").textContent)}catch(e){return{results:{}}}})();
+const DATA=PREVIEW?DEMO.data:RAW;
+const R=DATA.results||{};
+const S={dispo:{}};
 const $=id=>document.getElementById(id);
 const docId=j=>"j"+String(j).padStart(2,"0");
 const d=s=>new Date(s+"T12:00:00");
 const fmt=(s,o)=>d(s).toLocaleDateString("fr-FR",o);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const today=()=>{const t=new Date();t.setHours(0,0,0,0);return t};
+const today=()=>{const t=PREVIEW?new Date(DEMO.today+"T00:00:00"):new Date();t.setHours(0,0,0,0);return t};
+const addDays=(s,n)=>{const t=d(s);t.setDate(t.getDate()+n);return t.toISOString().slice(0,10)};
 const venueOf=f=>f.home?HOME:TEAMS[f.opp];
 const waze=v=>"https://waze.com/ul?q="+encodeURIComponent(v.addr+", "+v.city)+"&navigate=yes";
+const gmaps=v=>"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(v.gym+", "+v.addr+", "+v.city);
+const playDate=f=>{const r=R[docId(f.j)];return (r&&r.statut==="reporte"&&r.dateReport)||f.date};
 function gcal(f){
-  const r=S.results[docId(f.j)];const date=(r&&r.statut==="reporte"&&r.dateReport)||f.date;
   const v=venueOf(f);const [h,m]=v.hours.split("h").map(Number);
-  const st=new Date(date+"T00:00:00");st.setHours(h,m);const en=new Date(st.getTime()+150*6e4);
+  const st=new Date(playDate(f)+"T00:00:00");st.setHours(h,m);const en=new Date(st.getTime()+150*6e4);
   const p=x=>String(x).padStart(2,"0");const fd=t=>`${t.getFullYear()}${p(t.getMonth()+1)}${p(t.getDate())}T${p(t.getHours())}${p(t.getMinutes())}00`;
   const t=TEAMS[f.opp].name;
   return "https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(f.home?`VBCS 1 – ${t} (dom.)`:`${t} – VBCS 1 (ext.)`)
     +"&dates="+fd(st)+"/"+fd(en)+"&ctz=Europe/Paris&location="+encodeURIComponent(`${v.gym}, ${v.addr}, ${v.city}`)
     +"&details="+encodeURIComponent(`Championnat FSGT 69 · Poule M04 Honneur · N° de match ${f.j}`);
 }
-const gmaps=v=>"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(v.gym+", "+v.addr+", "+v.city);
-
 function outcome(r){
   if(!r)return null;
   if(r.statut==="forfait_pour")return{w:true,sw:3,sl:0,pts:2};
@@ -208,42 +372,167 @@ function outcome(r){
   if(sw!==3&&sl!==3)return null;
   return{w:sw===3,sw,sl,pts:sw===3?2:1};
 }
-function stats(){
-  let pj=0,v=0,dd=0,pts=0,sw=0,sl=0,nSum=0,nCnt=0;
-  for(const f of FIX){if(f.bye)continue;const r=S.results[docId(f.j)];const o=outcome(r);
-    if(o){pj++;o.w?v++:dd++;pts+=o.pts;sw+=o.sw;sl+=o.sl}
-    if(r&&typeof r.note==="number"){nSum+=r.note;nCnt++}}
-  const diff=sw-sl;
-  return [["Joués",pj],["Victoires",v],["Défaites",dd],["Points",pts,"pts"],["Sets",(diff>0?"+":"")+diff],["Note moy.",nCnt?(nSum/nCnt).toFixed(1):"–"]];
-}
 function nextMatch(){
   const t=today();
-  return FIX.find(f=>{if(f.bye)return false;const r=S.results[docId(f.j)];
-    if(outcome(r))return false;
-    const when=r&&r.statut==="reporte"&&r.dateReport?r.dateReport:f.date;
-    return d(when)>=t;});
+  return FIX.find(f=>!f.bye&&!outcome(R[docId(f.j)])&&d(playDate(f))>=t);
 }
+
+/* ===== Bilan ===== */
 function renderStats(){
-  $("stats").innerHTML=stats().map(([k,v,c])=>`<div class="stat"><span class="k">${k}</span><span class="v ${c||""}">${v}</span></div>`).join("");
+  let pj=0,v=0,dd=0,pts=0,sw=0,sl=0,nS=0,nC=0;
+  for(const f of FIX){if(f.bye)continue;const r=R[docId(f.j)];const o=outcome(r);
+    if(o){pj++;o.w?v++:dd++;pts+=o.pts;sw+=o.sw;sl+=o.sl}
+    if(r&&typeof r.note==="number"){nS+=r.note;nC++}}
+  const diff=sw-sl;
+  const items=[["Joués",pj],["Victoires",v],["Défaites",dd],["Points",pts,"pts"],["Sets",(diff>0?"+":"")+diff],["Note moy.",nC?(nS/nC).toFixed(1):"–"]];
+  $("stats").innerHTML=items.map(([k,val,c])=>`<div class="stat"><span class="k">${k}</span><span class="v ${c||""}">${val}</span></div>`).join("");
 }
+
+/* ===== Disponibilités (formulaire Google) ===== */
+function parseCSV(t){
+  const rows=[];let row=[],cur="",q=false;
+  for(let i=0;i<t.length;i++){const c=t[i];
+    if(q){if(c==='"'){if(t[i+1]==='"'){cur+='"';i++}else q=false}else cur+=c}
+    else if(c==='"')q=true;
+    else if(c===","){row.push(cur);cur=""}
+    else if(c==="\n"){row.push(cur);rows.push(row);row=[];cur=""}
+    else if(c!=="\r")cur+=c}
+  if(cur||row.length){row.push(cur);rows.push(row)}
+  return rows;
+}
+function buildDispo(rows){
+  /* colonnes : Horodatage, Prénom, Match, Disponibilité, Covoiturage, Places — la dernière réponse d'un joueur pour un match compte */
+  const by={};
+  for(const r of rows){
+    const name=(r[1]||"").trim();const m=/(\d+)/.exec(r[2]||"");if(!name||!m)continue;
+    const j=Number(m[1]);(by[j]=by[j]||{})[name.toLowerCase()]={name,dispo:(r[3]||"").trim(),covoit:(r[4]||"").trim(),places:Number(r[5])||0};
+  }
+  const out={};
+  for(const j in by){const list=Object.values(by[j]);
+    out[j]={
+      oui:list.filter(x=>/^oui/i.test(x.dispo)),
+      peut:list.filter(x=>/peut/i.test(x.dispo)),
+      non:list.filter(x=>/^non/i.test(x.dispo)),
+      drivers:list.filter(x=>/conduire/i.test(x.covoit)&&!/^non/i.test(x.dispo)),
+      seek:list.filter(x=>/cherche/i.test(x.covoit)&&!/^non/i.test(x.dispo))
+    };}
+  return out;
+}
+async function loadDispo(){
+  if(PREVIEW){S.dispo=buildDispo(DEMO.rows);render();return}
+  if(!CONFIG.csvUrl)return;
+  try{const res=await fetch(CONFIG.csvUrl+(CONFIG.csvUrl.includes("?")?"&":"?")+"t="+Date.now());
+    const rows=parseCSV(await res.text()).slice(1);S.dispo=buildDispo(rows);render();}
+  catch(e){$("status").textContent="Disponibilités momentanément indisponibles."}
+}
+function formLink(f){
+  if(!CONFIG.formUrl)return "";
+  const t=TEAMS[f.opp].name;
+  return CONFIG.formUrl+encodeURIComponent(`N° ${f.j} · ${fmt(playDate(f),{day:"numeric",month:"short"})} · ${t}`);
+}
+function a5Used(){return FIX.filter(f=>{const r=R[docId(f.j)];return r&&r.a5}).length}
+function dispoBlock(f){
+  if(!PREVIEW&&!CONFIG.formUrl)return "";
+  const D=S.dispo[f.j]||{oui:[],peut:[],non:[],drivers:[],seek:[]};
+  const link=formLink(f);
+  const n=D.oui.length;
+  let alert="";
+  if(n<6&&(n+D.peut.length)>0){
+    const used=a5Used();
+    alert=n<5?`<div class="alert">Seulement ${n} joueur${n>1?"s":""} dispo : risque de forfait (match perdu 0-3 si moins de 5 joueurs à 45 min).</div>`
+             :`<div class="alert amber">Seulement ${n} dispos : risque de jouer à 5 (${used}/3 déjà utilisés cette saison).</div>`;
+  }
+  const names=a=>a.length?`<div class="names">${a.map(x=>`<span class="name">${esc(x.name)}</span>`).join("")}</div>`:`<span class="muted">—</span>`;
+  const seats=D.drivers.reduce((s,x)=>s+x.places,0);
+  const away=!f.home;
+  return `<div class="dispo">
+    <div class="dispo-head"><h3>Qui vient ?</h3>
+      <div class="counts"><span class="pill ok">${n} dispo${n>1?"s":""}</span><span class="pill warn">${D.peut.length} incertain${D.peut.length>1?"s":""}</span><span class="pill bad">${D.non.length} absent${D.non.length>1?"s":""}</span></div></div>
+    ${alert}
+    <div class="groups">
+      <div class="group"><span class="gk">Dispos</span>${names(D.oui)}</div>
+      <div class="group"><span class="gk">Incertains</span>${names(D.peut)}</div>
+      ${away?`<div class="group"><span class="gk">Voitures</span>${D.drivers.length?`<div class="names">${D.drivers.map(x=>`<span class="name">${esc(x.name)} · ${x.places} pl.</span>`).join("")}</div>`:`<span class="muted">—</span>`}</div>
+      <div class="group"><span class="gk">Cherchent</span>${names(D.seek)}${D.seek.length?`<span class="muted" style="font-size:13px">${seats>=D.seek.length?"places suffisantes":"il manque "+(D.seek.length-seats)+" place(s)"}</span>`:""}</div>`:""}
+    </div>
+    <div>${PREVIEW?`<button type="button" class="btn-primary" data-answer="${f.j}">Je réponds pour ce match</button>`:`<a class="btn-primary" href="${link||"#"}" target="_blank" rel="noopener" ${link?"":'aria-disabled="true"'}>Je réponds pour ce match</a>`}</div>
+  </div>`;
+}
+
+/* ===== Prochain match ===== */
 function renderNext(){
   const f=nextMatch();const el=$("next");
   if(!f){el.innerHTML=`<div class="eyebrow">Saison terminée</div><h2>Tous les matchs sont joués.</h2>`;return}
-  const r=S.results[docId(f.j)];const when=r&&r.statut==="reporte"&&r.dateReport?r.dateReport:f.date;
-  const v=venueOf(f);const t=TEAMS[f.opp].name;
+  const r=R[docId(f.j)];const when=playDate(f);const v=venueOf(f);const t=TEAMS[f.opp].name;
   const days=Math.round((d(when)-today())/864e5);
   const cd=days===0?"Ce soir":days===1?"Demain":`J-${days}`;
   el.innerHTML=`<div class="next-top"><div class="eyebrow">Prochain match · N° ${f.j}${r&&r.statut==="reporte"?" · reporté":""}</div><span class="countdown">${cd}</span></div>
   <h2>${f.home?`<span class="us">VBCS 1</span><span class="vs">reçoit</span>${esc(t)}`:`${esc(t)}<span class="vs">reçoit</span><span class="us">VBCS 1</span>`}</h2>
-  <div class="next-meta"><span><b>${fmt(when,{weekday:"long",day:"numeric",month:"long"})}</b> à ${v.hours}</span><span>${esc(v.gym)}, ${esc(v.addr)}, ${esc(v.city)}</span></div>
-  <div class="links"><a class="btn-link" href="${waze(v)}" target="_blank" rel="noopener">Waze ↗</a><a class="btn-link" href="${gmaps(v)}" target="_blank" rel="noopener">Google Maps ↗</a><a class="btn-link" href="${gcal(f)}" target="_blank" rel="noopener">+ Google Agenda</a></div>`;
+  <div class="next-meta"><span><b>${fmt(when,{weekday:"long",day:"numeric",month:"long"})}</b> à ${v.hours}</span><span>${esc(v.gym)}, ${esc(v.addr)}, ${esc(v.city)}</span>${f.home?`<span>On reçoit : <b>on arbitre</b></span>`:""}</div>
+  <div class="links"><a class="btn-link" href="${waze(v)}" target="_blank" rel="noopener">Waze ↗</a><a class="btn-link" href="${gmaps(v)}" target="_blank" rel="noopener">Google Maps ↗</a><a class="btn-link" href="${gcal(f)}" target="_blank" rel="noopener">+ Google Agenda</a></div>
+  ${dispoBlock(f)}`;
 }
+
+/* ===== Préparation mentale ===== */
+function renderMental(){
+  const f=nextMatch();
+  const fc=(f&&DATA.focus&&DATA.focus[docId(f.j)])||DATA.focusSaison||{motcle:"ENSEMBLE",objectif:""};
+  $("focus").innerHTML=`<div class="eyebrow">${f&&DATA.focus&&DATA.focus[docId(f.j)]?`Focus du match · N° ${f.j}`:"Focus de la saison"}</div>
+    <div class="word">${esc(fc.motcle)}</div>
+    <div class="obj"><b>Objectif :</b> ${esc(fc.objectif)}</div>
+    <div class="eyebrow" style="margin-top:6px">Nos 3 règles</div>
+    <ul class="rules"><li>Une erreur, c'est une info, pas un drame.</li><li>On parle sur chaque ballon.</li><li>Chaque point est neuf.</li></ul>`;
+  $("routine").innerHTML=`<div class="eyebrow" style="margin-bottom:10px">La routine VBCS</div>
+    <div class="step"><span class="when">Avant le match</span><span class="what"><b>Respiration 4-4</b>Inspire 4 secondes, expire 4 secondes, 6 fois. Puis ton mot-clé perso.</span></div>
+    <div class="step"><span class="when">Au service</span><span class="what"><b>Routine en 4 temps</b>Respire, toujours le même geste, fixe ta cible 2 secondes, sers.</span></div>
+    <div class="step"><span class="when">Entre les points</span><span class="what"><b>Reset</b>Le point est fini : on se regarde, un mot ou un tape-main, et on repart à zéro.</span></div>
+    <div class="step"><span class="when">Après le match</span><span class="what"><b>Ce qu'on retient</b>Une chose qui a marché, une chose à travailler. La note du match est en dessous.</span></div>`;
+  const played=FIX.filter(x=>!x.bye&&R[docId(x.j)]&&typeof R[docId(x.j)].note==="number");
+  $("spark-legend").textContent=played.length?`${played.length} match${played.length>1?"s":""} noté${played.length>1?"s":""}, sur 10`:"Les notes apparaîtront après le premier match";
+  $("spark").innerHTML=played.length?played.map(x=>{const n=R[docId(x.j)].note;return `<div class="b"><em>${n}</em><i style="height:${n*6}px"></i><span>N°${x.j}</span></div>`}).join(""):`<span class="muted" style="font-size:13px;align-self:center">—</span>`;
+}
+
+/* ===== Règlement ===== */
+function gauge(label,used,free,penalty){
+  /* free = nombre toléré sans pénalité */
+  const total=Math.max(free+1,used);
+  const cells=Array.from({length:total},(_,i)=>`<i class="${i<used?(i<free?(used>=free?"warn":"on"):"bad"):""}"></i>`).join("");
+  const cls=used>free?"bad":used===free?"warn":"";
+  const st=used>free?`<b>${penalty(used)}</b> déjà pris`:used===free?`Limite atteinte : le prochain coûte <b>${penalty(used+1)}</b>`:`Encore <b>${free-used}</b> sans pénalité`;
+  return `<div class="gauge ${cls}"><span class="k">${label}</span><span class="v">${used}<small> / ${free} tolérés</small></span><div class="cells">${cells}</div><span class="st">${st}</span></div>`;
+}
+function renderRules(){
+  const ours=FIX.filter(f=>!f.bye).map(f=>({f,r:R[docId(f.j)]})).filter(x=>x.r);
+  const reports=ours.filter(x=>x.r.statut==="reporte"&&x.r.demande!=="adv").length;
+  const a5=ours.filter(x=>x.r.a5).length;
+  const ret=ours.filter(x=>x.r.retard).length;
+  const pRep=n=>{let p=0;for(let i=4;i<=Math.min(n,6);i++)p+=i-3;return n>=7?"descente":p+" pt"+(p>1?"s":"")};
+  const pA5=n=>{let p=0;for(let i=4;i<=n;i++)p+=i-3;return p+" pt"+(p>1?"s":"")};
+  const pRet=n=>{let p=0;for(let i=2;i<=n;i++)p+=Math.min(i-1,4);return p+" pt"+(p>1?"s":"")};
+  $("gauges").innerHTML=gauge("Reports demandés",reports,3,pRep)+gauge("Matchs démarrés à 5",a5,3,pA5)+gauge("Retards",ret,1,pRet);
+
+  const mv={};ours.forEach(({f,r})=>(r.renforts||[]).forEach(n=>(mv[n]=mv[n]||[]).push(f.j)));
+  const mvRows=Object.entries(mv).map(([n,js])=>`<div class="rule-row"><span>${esc(n)} <span class="muted">(VBCS 2 → VBCS 1, N° ${js.join(", ")})</span></span><span class="pill ${js.length>=3?"bad":js.length===2?"warn":"ok"}">${js.length} / 3 matchs</span></div>`).join("");
+
+  const t=today();
+  const fdm=ours.filter(({r})=>{const o=outcome(r);return o&&o.w&&r.statut==="joue"}).map(({f,r})=>{
+    const dl=addDays(playDate(f),10);const late=d(dl)<t;const sent=r.fdm==="envoyee";
+    return `<div class="rule-row"><span>FDM N° ${f.j} · ${esc(TEAMS[f.opp].name)} <span class="muted">(on a gagné, on l'envoie)</span></span><span class="pill ${sent?"ok":late?"bad":"warn"}">${sent?"Envoyée":(late?"En retard ":"Avant le ")+fmt(dl,{day:"numeric",month:"short"})}</span></div>`;}).join("");
+
+  $("rules-extra").innerHTML=
+    `<div class="rule-row"><b>Renforts de VBCS 2</b><span class="muted" style="font-size:13px">3 joueurs max par match, 3 matchs max par joueur</span></div>`+
+    (mvRows||`<div class="rule-row"><span class="muted">Aucun renfort utilisé pour l'instant.</span></div>`)+
+    `<div class="rule-row" style="margin-top:6px"><b>Feuilles de match à envoyer</b><span class="muted" style="font-size:13px">0,5 pt si hors délai</span></div>`+
+    (fdm||`<div class="rule-row"><span class="muted">Rien à envoyer pour l'instant.</span></div>`);
+}
+
+/* ===== Saison ===== */
 function resultCell(f,r){
   const o=outcome(r);
   if(o){const lbl=r.statut==="forfait_pour"?"V forfait":r.statut==="forfait_contre"?"D forfait":`${o.w?"V":"D"} ${o.sw}–${o.sl}`;
     return `<span class="chip ${o.w?"win":"loss"}">${lbl}</span>`}
   if(r&&r.statut==="reporte")return `<span class="chip rep">Reporté${r.dateReport?" · "+fmt(r.dateReport,{day:"numeric",month:"short"}):""}</span>`;
-  if(d(f.date)<today())return `<span class="chip late">À saisir</span>`;
+  if(d(f.date)<today())return `<span class="chip late">Résultat à venir</span>`;
   return `<span class="chip todo">À jouer</span>`;
 }
 function renderSeason(){
@@ -251,26 +540,76 @@ function renderSeason(){
   for(const f of FIX){const key=f.date.slice(0,7);let g=groups[groups.length-1];if(!g||g.key!==key){g={key,items:[]};groups.push(g)}g.items.push(f)}
   $("season").innerHTML=groups.map(g=>`<div class="month"><h3>${fmt(g.key+"-15",{month:"long",year:"numeric"})}</h3><div class="list">${g.items.map(f=>{
     if(f.bye)return `<div class="row bye"><div class="num">N°<b>${f.j}</b></div><div class="date"><span class="d">Semaine du ${fmt(f.date,{day:"numeric",month:"short"})}</span></div><div class="match"><span class="opp">Exempt</span><span class="venue">Pas de match cette semaine</span></div><div class="res"></div></div>`;
-    const r=S.results[docId(f.j)];const v=venueOf(f);
+    const r=R[docId(f.j)];const v=venueOf(f);const o=outcome(r);
     const setsTxt=r&&r.statut==="joue"&&Array.isArray(r.sets)?r.sets.map(([a,b])=>`${a}-${b}`).join(" · "):"";
     const note=r&&typeof r.note==="number"?`<span class="note"><span class="bar"><i style="width:${r.note*10}%"></i></span>${r.note}/10</span>`:"";
+    const flags=r?[r.a5?"Démarré à 5":"",r.retard?"Retard":"",(r.renforts||[]).length?`Renfort : ${r.renforts.join(", ")}`:""].filter(Boolean):[];
+    const D=S.dispo[f.j];const upcoming=!o&&d(playDate(f))>=today();
+    const dmini=upcoming&&D?`<span class="mini ${D.oui.length>=6?"ok":"warn"}">${D.oui.length} dispo${D.oui.length>1?"s":""}</span>`:"";
     return `<div class="row${nx&&nx.j===f.j?" is-next":""}">
       <div class="num">N°<b>${f.j}</b></div>
       <div class="date"><span class="d">${fmt(f.date,{weekday:"short",day:"numeric",month:"short"})}</span><span class="t">${v.hours}</span></div>
       <div class="match"><span class="opp">${esc(TEAMS[f.opp].name)}<span class="tag ${f.home?"home":"away"}">${f.home?"Dom.":"Ext."}</span></span>
         <span class="venue">${esc(v.gym)} · ${esc(v.city)}<a href="${waze(v)}" target="_blank" rel="noopener">Waze ↗</a><a href="${gmaps(v)}" target="_blank" rel="noopener">Maps ↗</a><a href="${gcal(f)}" target="_blank" rel="noopener">+ Agenda</a></span>
         ${setsTxt?`<span class="sets">${setsTxt}</span>`:""}
+        ${flags.length?`<span class="flags">${flags.map(x=>`<span class="flag">${esc(x)}</span>`).join("")}</span>`:""}
         ${r&&r.commentaire?`<span class="comment">« ${esc(r.commentaire)} »</span>`:""}</div>
-      <div class="res">${resultCell(f,r)}${note}${S.canEdit?`<button class="edit" data-j="${f.j}">${r?"Modifier":"Saisir"}</button>`:""}</div>
+      <div class="res">${resultCell(f,r)}${note}${dmini}${upcoming?(PREVIEW?`<button type="button" class="edit" data-answer="${f.j}">Répondre</button>`:(formLink(f)?`<a class="edit" href="${formLink(f)}" target="_blank" rel="noopener">Répondre</a>`:"")):""}</div>
     </div>`}).join("")}</div></div>`).join("");
 }
-function render(){renderStats();renderNext();renderSeason()}
-function setStatus(t){$("status").textContent=t}
-render();
+
+/* ===== Simulation du formulaire (aperçu) ===== */
+const LS={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+function openAnswer(j){
+  const up=FIX.filter(f=>!f.bye&&!outcome(R[docId(f.j)])&&d(playDate(f))>=today());
+  $("f-match").innerHTML=up.map(f=>`<option value="${f.j}">N° ${f.j} · ${fmt(playDate(f),{weekday:"short",day:"numeric",month:"short"})} · ${esc(TEAMS[f.opp].name)} (${f.home?"dom.":"ext."})</option>`).join("");
+  $("f-match").value=String(j);
+  $("f-name").value=LS.get("vbcs-prenom")||"";
+  document.querySelectorAll('#form input[type=radio]').forEach(x=>x.checked=false);
+  const name=$("f-name").value.trim().toLowerCase();
+  const prev=name&&(S.dispo[j]||{});
+  if(prev){const all=[...(prev.oui||[]),...(prev.peut||[]),...(prev.non||[])];const me=all.find(x=>x.name.toLowerCase()===name);
+    if(me){const dv={Oui:"d-oui","Peut-être":"d-peut",Non:"d-non"}[me.dispo];if(dv)$(dv).checked=true;
+      const cv={"Je peux conduire":"c-drive","Je cherche une place":"c-seek","Pas besoin":"c-none"}[me.covoit];if(cv)$(cv).checked=true;if(me.places)$("f-places").value=me.places}}
+  $("f-err").hidden=true;syncAnswer();$("overlay").hidden=false;($("f-name").value?$("f-match"):$("f-name")).focus();
+}
+function syncAnswer(){
+  const f=FIX.find(x=>x.j===Number($("f-match").value));const no=$("d-non").checked;
+  $("f-covoit-wrap").hidden=!f||f.home||no;
+  $("f-places-wrap").hidden=$("f-covoit-wrap").hidden||!$("c-drive").checked;
+}
+function closeAnswer(){$("overlay").hidden=true}
+function toast(t){const el=$("toast");el.textContent=t;el.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>el.hidden=true,2600)}
+function submitAnswer(e){
+  e.preventDefault();
+  const name=$("f-name").value.trim();const j=Number($("f-match").value);
+  const dispo=(document.querySelector('input[name=dispo]:checked')||{}).value;
+  const err=t=>{$("f-err").textContent=t;$("f-err").hidden=false};
+  if(!name)return err("Indique ton prénom.");
+  if(!dispo)return err("Dis si tu viens : Oui, Peut-être ou Non.");
+  let covoit="",places="";
+  if(!$("f-covoit-wrap").hidden){covoit=(document.querySelector('input[name=covoit]:checked')||{}).value||"Pas besoin";
+    if(covoit==="Je peux conduire")places=$("f-places").value||"1"}
+  LS.set("vbcs-prenom",name);
+  DEMO.rows.push([new Date().toISOString(),name,"N° "+j,dispo,covoit,places]);
+  S.dispo=buildDispo(DEMO.rows);closeAnswer();render();
+  toast(`Merci ${name}, réponse enregistrée pour le N° ${j}`);
+}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-answer]");if(b)openAnswer(Number(b.dataset.answer))});
+$("form").addEventListener("submit",submitAnswer);
+$("f-cancel").addEventListener("click",closeAnswer);
+$("overlay").addEventListener("click",e=>{if(e.target.id==="overlay")closeAnswer()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("overlay").hidden)closeAnswer()});
+["f-match"].forEach(id=>$(id).addEventListener("change",syncAnswer));
+document.querySelectorAll('#form input[type=radio]').forEach(x=>x.addEventListener("change",syncAnswer));
+
+function render(){renderStats();renderNext();renderRules();renderSeason()}
 (()=>{
-  const n=Object.keys(S.results).length;
+  $("preview-banner").hidden=!PREVIEW;
+  const n=Object.keys(R).length;
   const maj=DATA.maj?" · mis à jour le "+new Date(DATA.maj).toLocaleDateString("fr-FR",{day:"numeric",month:"long"}):"";
-  setStatus(n?`${n} match${n>1?"s":""} renseigné${n>1?"s":""}${maj}`:"Aucun résultat pour l'instant");
+  $("status").textContent=n?`${n} match${n>1?"s":""} renseigné${n>1?"s":""}${maj}`:"Aucun résultat pour l'instant";
+  render();loadDispo();
 })();
 </script>
 </body>
